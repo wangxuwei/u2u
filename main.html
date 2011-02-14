@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.tmpl.js"></script>
+		<script type="text/javascript" src="js/snow.core.js"></script> 		
+		<script type="text/javascript" src="js/snow.event.js"></script>
+		
+		<script type="text/javascript" src="js/u2u.rate.js"></script>
+		
+	</head>
+	<body>
+		<div id="page">
+			<div id="temperature" class="converter">
+				<h2>Temperature Converter</h2>
+			</div>
+			<div id="weight" class="converter">
+				<h2>Weight Converter</h2>
+			</div>
+			<div id="length" class="converter">
+				<h2>Length Converter</h2>
+			</div>
+			<div id="speed" class="converter">
+				<h2>Speed Converter</h2>
+			</div>
+			<div id="volume" class="converter">
+				<h2>Volume Converter</h2>
+			</div>
+			<div id="area" class="converter">
+				<h2>Area Converter</h2>
+			</div>
+	    </div>
+	</div>
+	</body>
+	
+	<script>
+		$(function(){
+			var temperatureRates = u2u.rate.getTemperatureRate();
+			var weightRates = u2u.rate.getWeightRate();
+			var lengthRates = u2u.rate.getLengthRate();
+			var speedRates = u2u.rate.getSpeedRate();
+			var volumeRates = u2u.rate.getVolumeRate();
+			var areaRates = u2u.rate.getAreaRate();
+			buildTable(temperatureRates,"temperature");
+			buildTable(weightRates,"weight");
+			buildTable(lengthRates,"length");
+			buildTable(speedRates,"speed");
+			buildTable(volumeRates,"volume");
+			buildTable(areaRates,"area");
+			
+			$(".btnConvert").sTouch(function(){
+				var $button = $(this);
+				var $table = $button.closest("table");
+				var rates = $table.data("rates");
+				var $baseInput = $button.parent().find("input");
+				var baseRateId = $baseInput.attr("name");
+				var value = $baseInput.val();
+				for(i = 0; i<rates.length; i++){
+					var cValue = u2u.rate.convert(value,baseRateId,rates[i].id);
+					var $newInput = $("input[name='"+rates[i].id+"']").val(cValue);
+				}
+			});
+		});
+		
+		function buildTable(rates,converterId){
+			var $table = $("#table-tmpl").tmpl({rates:rates});
+			$("#"+converterId).append($table);
+			$table.data("rates",rates);
+		}
+	</script>
+	
+	<script id="table-tmpl" type="text/html">
+		<table>
+			{{each rates}}
+				{{tmpl(this) "#unit-tmpl"}}
+			{{/each}}
+		</table>
+	</script>
+	<script id="unit-tmpl" type="text/html">
+		<tr>
+			<td>${name}&nbsp;(${unit}):</td>
+			<td><input name="${id}"></input><button class="btnConvert">Convert</button></td>
+		</tr>
+	</script>
+</html>

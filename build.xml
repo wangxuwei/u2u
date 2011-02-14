@@ -1,0 +1,14 @@
+<project name="unitConverter" default="updateSnowUI" basedir=".">
+
+    <property name="snowUI_src" value="E:/work/opensource/snow/snowUI/" />
+	
+	<target name="updateSnowUI" description="Copy the snowModules">
+		
+		<copy file="${snowUI_src}/js-dependencies/jquery.min.js" todir="js"/>
+		<copy file="${snowUI_src}/js-dependencies/jquery.tmpl.js" todir="js"/>
+
+		<copy file="${snowUI_src}/src/js/snow.core.js" todir="js"/>
+		<copy file="${snowUI_src}/src/js/snow.event.js" todir="js"/>
+		
+	</target>
+</project>

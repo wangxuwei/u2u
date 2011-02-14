@@ -1,0 +1,13 @@
+{
+  "name": "Unit2Unit",
+  "description": "The goal of the Unit2Unit is to be a new unit converter for Tablets and PC. The differentiator is to provide a visual way to set the unit rather than the usual text field input mechanism.",
+  "version": "1.1.1",
+  "app": {
+    "launch": {
+      "local_path": "main.html"
+    }
+  },
+  "permissions": [
+    "unlimitedStorage"
+  ]
+}
