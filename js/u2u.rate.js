@@ -312,6 +312,21 @@ u2u.rate = (function(){
 					   name:"milliliter",
 					   unit:"ml",
 					   rate:1000000},
+					   
+					  {id:"cubicYard",
+					   name:"cubic yard",
+					   unit:"yd3",
+					   rate:1.3079506},
+					   
+					  {id:"cubicFeet",
+					   name:"cubic feet",
+					   unit:"ft3",
+					   rate:35.3146667},
+					   
+					  {id:"cubicInch",
+					   name:"cubic Inch",
+					   unit:"in3",
+					   rate:61023.7440947}
 					 ];
 	var aRates = [_temperatureRate,_weightRate,_lengthRate,_speedRate,_volumeRate,_areaRate];
 	var _cache = {};
