@@ -235,6 +235,11 @@ u2u.rate = (function(){
 					   name:"square millimeter",
 					   unit:"mm2",
 					   rate:1000000},
+					   
+					  {id:"squareKilometer",
+					   name:"square kilometer",
+					   unit:"km2",
+					   rate:0.000001},
 						   
 					  {id:"hectare",
 					   name:"hectare",
